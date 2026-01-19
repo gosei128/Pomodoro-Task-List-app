@@ -1,0 +1,19 @@
+@import 'tailwindcss';
+
+
+@theme{
+    --breakpoint-mobile : 375px;
+    --breakpoint-laptop : 1440px;
+
+    --font-family-englebert : 'Englebert';
+
+}
+
+body{
+    font-family: 'Englebert';
+}
+
+@font-face {
+    font-family: 'Englebert';
+    src: url('./assets/fonts/Englebert-Regular.ttf')format('truetype');
+}
