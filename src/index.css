@@ -4,6 +4,11 @@
 @theme{
     --breakpoint-mobile : 375px;
     --breakpoint-laptop : 1440px;
+    
+    --color-neutral-100 : #fff1f1;
+    --color-neutral-400 :#ff6868;
+    --color-neutral-500 : #fa3939;
+
 
     --font-family-englebert : 'Englebert';
 

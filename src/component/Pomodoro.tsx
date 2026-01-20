@@ -1,9 +1,16 @@
 import  {useState, useEffect} from 'react'
-import {motion} from 'motion/react'
+import {motion, AnimatePresence} from 'motion/react'
+import { MdOutlineTimer } from "react-icons/md";
+import { FiCoffee } from "react-icons/fi";
+import { IoMdPause } from "react-icons/io";
+import { FaPlay } from "react-icons/fa6";
+import { RiResetLeftLine } from "react-icons/ri";
+
+
 const Pomodoro = () =>{
     const [isRunning, setIsRunning] = useState<boolean>(false)
     const [time, setTime] = useState<number>(25 * 60)
-    const [mode, setMode] = useState<string>('break') // or break
+    const [mode, setMode] = useState<string>('focus') // or break
     const [cycle, setCycle] = useState<number>(0)
 
     useEffect(()=>{
@@ -26,7 +33,7 @@ const Pomodoro = () =>{
         setIsRunning(false)
         if(mode === 'focus'){
             setMode('break')
-            setTime(5*60)
+            setTime(5 * 60)
         }else{
             setMode('focus')
             setTime(25 * 60)
@@ -46,16 +53,23 @@ const Pomodoro = () =>{
     }
     return (
         <>
-        <div className='p-2 h-[500px] flex flex-col items-center w-2xl'>
-                <div className='w-lg relative flex justify-around border p-5 rounded-full bg-neutral-400'>
-                    <motion.div className='absolute bg-white top-0 left-1 rounded-full w-50 p-8' initial={{translateX:0,}} animate={{translateX : mode === 'focus' ? 160  : 0}} />
-                    <h2 className='z-10 font-[englebert]'>Focus</h2>
-                    <h2 className='z-10'>Break</h2>
+        <div className='p-2 py-5 rounded-4xl bg-neutral-500 flex flex-col gap-5 items-center w-full mobile:min-w-[340px] laptop:min-w-[400px]'>
+                <div className=' relative p-3 w-full bg-neutral-500 flex justify-around  shadow-lg rounded-full'>
+                    <AnimatePresence >
+                     <motion.div className='absolute bg-white p-7 w-45 inset-shadow-sm inset-shadow-gray-300 top-0 left-0 rounded-full' initial={{translateX:1,}} animate={{translateX : mode === 'focus' ? -1  : 140}}  />
+                    </AnimatePresence>
+                    
+                    <h2 className={`z-10 text-2xl flex items-center gap-1 font-semibold ${mode === "focus" ? "text-neutral-600" : "text-white"}`}> <MdOutlineTimer />
+                     Focus</h2>
+                    <h2 className={`z-10 text-2xl flex items-center gap-1 font-semibold ${mode === "break" ? "text-neutral-600" : "text-white"}`}> <FiCoffee />
+                    Break</h2>
                 </div>
                 <div>
-                    <div>{formatTime()}</div>
-                    <button onClick={()=>setIsRunning(!isRunning)}>{isRunning ? "Pause" : "Start"}</button>
-                    <button onClick={handleReset}>Reset</button>
+                    <div className='text-5xl text-neutral-600 shadow-lg font-bold bg-white text-center p-5 rounded-2xl'>{formatTime()}</div>
+                    <div className=' mt-5 flex gap-5 justify-center'>
+                    <button className='boreder bg-white rounded-xl p-3 px-10' onClick={()=>setIsRunning(!isRunning)}>{isRunning ? <IoMdPause /> : <FaPlay />}</button>
+                    <button className='boreder bg-white rounded-xl p-3 px-10 ' onClick={handleReset}><RiResetLeftLine className=''/></button>
+                    </div>
                     <p>Pomodoros : {cycle}</p>
                 </div>
         </div>
