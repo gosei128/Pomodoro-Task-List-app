@@ -5,13 +5,15 @@ import { FiCoffee } from "react-icons/fi";
 import { IoMdPause } from "react-icons/io";
 import { FaPlay } from "react-icons/fa6";
 import { RiResetLeftLine } from "react-icons/ri";
+import { usePomodoroContext } from './PomodoroContext';
 
 
 const Pomodoro = () =>{
+    const {incrementCycle,completedCycle, resetCycle,} = usePomodoroContext()
     const [isRunning, setIsRunning] = useState<boolean>(false)
     const [time, setTime] = useState<number>(25 * 60)
     const [mode, setMode] = useState<string>('focus') // or break
-    const [cycle, setCycle] = useState<number>(0)
+    // const [cycle, setCycle] = useState<number>(0)
 
     useEffect(()=>{
         let timer : number
@@ -37,7 +39,8 @@ const Pomodoro = () =>{
         }else{
             setMode('focus')
             setTime(25 * 60)
-            setCycle((c)=> c + 1)
+            // setCycle((c)=> c + 1)
+            incrementCycle()
         }
     }
 
@@ -70,7 +73,7 @@ const Pomodoro = () =>{
                     <button className='boreder bg-white rounded-xl p-3 px-10' onClick={()=>setIsRunning(!isRunning)}>{isRunning ? <IoMdPause /> : <FaPlay />}</button>
                     <button className='boreder bg-white rounded-xl p-3 px-10 ' onClick={handleReset}><RiResetLeftLine className=''/></button>
                     </div>
-                    <p>Pomodoros : {cycle}</p>
+                    <p>Pomodoros : {completedCycle}</p>
                 </div>
         </div>
         </>
