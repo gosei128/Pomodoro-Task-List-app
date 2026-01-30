@@ -4,7 +4,7 @@ function App() {
   
 
   return (
-    <div className="h-screen  bg-neutral-100 p-2  border">
+    <div className="h-screen  bg-neutral-100 ">
       <Home/>
     </div >
   )

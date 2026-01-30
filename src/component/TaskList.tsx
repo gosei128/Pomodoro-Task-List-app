@@ -28,9 +28,9 @@ const TaskList = () => {
                     setData(JSON.parse(savedTodos).todo)
                 }
             }}/>}
-            <div className="h-76 overflow-y-scroll bg-white rounded-4xl p-5 relative">
+            <div className="h-full overflow-y-hidden bg-white rounded-4xl p-5 relative">
                 <div className="flex border-b items-center justify-between">
-                    <h1>Task List (6 task)</h1>
+                    <h1>Task List ( task)</h1>
                     <div>
                     <CiSearch />
                     </div>
